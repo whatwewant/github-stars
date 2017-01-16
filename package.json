@@ -3,7 +3,8 @@
   "scripts": {
     "start": "roadhog server",
     "build": "roadhog build",
-    "lint": "eslint --ext .js src test"
+    "lint": "eslint --ext .js src test",
+    "precommit": "npm run lint"
   },
   "dependencies": {
     "babel-runtime": "^6.9.2",
