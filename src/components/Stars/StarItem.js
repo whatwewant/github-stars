@@ -13,7 +13,7 @@ function StarItem(props) {
   const repo = `${owner.login}/${name}`;
 
   return (
-    <div className={containerClass} onClick={() => props.dispatch({ type: 'star/select', payload: { id, repo } })}>
+    <div className={containerClass} onClick={() => props.dispatch({ type: 'stars/select', payload: { id, repo } })}>
       <div className={styles.avatar}>
         <img src={`${owner.avatar_url}&s=60`} role="presentation" />
       </div>

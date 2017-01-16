@@ -13,7 +13,8 @@
 }
 
 .brand h1 {
-  width: 100px;
+  /*width: 100px;*/
+  flex: 1;
   height: 50px;
   line-height: 50px;
   text-align: center;
@@ -22,7 +23,8 @@
 }
 
 .brand div {
-  flex: 1;
+  /*flex: 1;*/
+  padding: 0 10px;
 }
 
 .brand div i {

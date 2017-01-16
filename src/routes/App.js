@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
+import marked from 'marked';
 // import { Link } from 'dva/router';
 // import { binActionCreators } from 'redux';
 import 'normalize.css';
@@ -20,7 +21,7 @@ class App extends PureComponent {
       // headers,
       readme,
       dispatch,
-      // detail,
+      detail,
       // filteredStars
     } = this.props;
 
@@ -51,6 +52,8 @@ class App extends PureComponent {
           <Detail
             unstarLoading={stars.unstarLoading}
             readmeLoading={readme.readmeLoding}
+            repo={detail.repo}
+            readme={detail.readme}
             dispatch={dispatch}
             stars={stars}
           />
@@ -60,6 +63,19 @@ class App extends PureComponent {
   }
 }
 
-const mapStateToProps = state => state;
+const mapStateToProps = state => {
+  const star = state.stars.data.filter(item => item.id === state.stars.selectedStarId)[0];
+
+  const repo = star ? `${star.owner.login}/${star.name}` : null;
+  const readme = repo && state.readme[repo] ? marked(decodeURIComponent(atob(state.readme[repo]))) : null;
+
+  return {
+  ...state,
+  detail: {
+    readme,
+    repo,
+  }
+};
+};
 
 export default connect(mapStateToProps)(App);

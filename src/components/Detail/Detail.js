@@ -3,7 +3,7 @@ import { findDOMNode } from 'react-dom';
 import classnames from 'classnames';
 // import fa from 'font-awesome/css/font-awesome.css';
 import fa from '../../assets/css/font-awesome.css';
-import gm from 'github-markdown-css';
+import gm from '../../assets/css/github-markdown.css';
 
 import styles from './Detail.css';
 

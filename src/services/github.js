@@ -68,6 +68,6 @@ export async function unstar(repo, username, password) {
 }
 
 export async function getReadme(repo, username, password) {
-  return await fetch(`https://api.github.com/repo/${repo}/readme`, auth({}, username, password))
+  return await fetch(`https://api.github.com/repos/${repo}/readme`, auth({}, username, password))
     .then(res => res.json());
 }

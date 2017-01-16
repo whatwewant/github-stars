@@ -34,7 +34,7 @@ export default {
     },
 
     'select/save' (state, action) {
-      return {...state, selectedStartId: action.payload};
+      return {...state, selectedStarId: action.payload};
     },
 
     'sync/start' (state, action) {
@@ -136,6 +136,7 @@ export default {
       });
     },
     *select({ payload: { id, repo } }, { put, call, select }) {
+      console.log('Select: ', id);
       yield put({
         type: 'select/save',
         payload: id,
