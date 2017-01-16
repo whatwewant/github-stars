@@ -12,46 +12,52 @@ import fetch from 'dva/fetch';
 
 function parseLink(str) {
   const ret = {};
-  str.split(',').forEach(item => {
-    const m = item.match(/<(.+?); rel=\"(.+?)\">/);
-    const ret[m[2]] = m[1];
+  str.split(',').forEach((item) => {
+    const m = item.match(/<(.+?)>; rel="(.+?)"/);
+    ret[m[2]] = m[1];
   });
   return ret;
 }
 
 function selectStar(star) {
-  const { id, owner, name, html_url, description, forks, watcher, language } = star;
+  const { id, owner, name, html_url, description, forks, watchers, language } = star;
   return {
     id, name, html_url, description, forks, watchers, language,
     owner: {
-      avastar_url: owner.avastar_url,
+      avatar_url: owner.avatar_url,
       login: owner.login,
     },
   };
 }
 
 function auth(opts = {}, username, password) {
-  return {...opts, headers: {
-    ...opts.headers,
-    Authorization: `Basic ${btoa(`${username}:${password}`)}`, // wa btoa is a string to base64, insteadOf new Buffer(str).toString('base64'); // Buffer is Backend Server(nodejs) Function
-  }};
+  return {
+    ...opts,
+    headers: {
+      ...opts.headers,
+      Authorization: `Basic ${btoa(`${username}:${password}`)}`, // wa btoa is a string to base64, insteadOf new Buffer(str).toString('base64'); // Buffer is Backend Server(nodejs) Function
+    }
+  };
 }
 
-export async function fetchStars (user, username, password) {
-  console.log('fetchStars', url);
-  let links;
-  const result = await fetch(url, auth({type: 'json'}, username, password).then(res => {
-    links = parseLink(res.headers.get('Link'));
-    return res.json;
-  }));
+export async function fetchStars (url, username, password) {
+  // console.log('fetchStars: ', url, username, password);
+  // let links;
+  // const result = await fetch(url, auth({type: 'json'}, username, password)).then(res => {
+  //  links = parseLink(res.headers.get('Link'));
+  //  return res.json();
+  // });
+  const res = await fetch(url, auth({ type: 'json' }, username, password));
+  const links = parseLink(res.headers.get('Link'));
+  const result = await res.json();
   return {
     result: result.map(selectStar),
     links,
   };
 }
 
-export async function fetchUser(user, password) {
-  return await fetch(`https://api.github.com/user`, auth({}, user, password))
+export async function fetchUser(username, password) {
+  return await fetch(`https://api.github.com/user`, auth({}, username, password))
     .then(res => res.json());
 }
 

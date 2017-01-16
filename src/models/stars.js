@@ -96,7 +96,7 @@ export default {
 
       const { username, password, userInfo } = yield select(state => state.user);
       const url = `https://api.github.com/users/${userInfo.login}/starred?per_page=100&page=1`;
-      const { links, result } = yield call(GithubAPI.fetchStars, url, username, password);
+      let { links, result } = yield call(GithubAPI.fetchStars, url, username, password);
       let data = result;
 
       yield put({
@@ -108,7 +108,7 @@ export default {
         type: 'sync/progress',
         payload: {
           next: extractPageFromUrl(links.next),
-          last: extractPageFormUrl(links.last),
+          last: extractPageFromUrl(links.last),
         },
       });
 

@@ -35,7 +35,7 @@ export default {
         yield put({
           type: 'fetch/end',
         });
-      },
+      }
     },
   },
   subscriptions: {},

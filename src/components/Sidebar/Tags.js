@@ -1,12 +1,12 @@
 import React from 'react';
-import styles from './User.css';
+import styles from './Tags.css';
 
-function User() {
+function Tags() {
   return (
     <div className={styles.normal}>
-      Component: User
+      Component: Tags
     </div>
   );
 }
 
-export default User;
+export default Tags;

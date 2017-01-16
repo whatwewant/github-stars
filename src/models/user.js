@@ -24,7 +24,7 @@ export default {
     },
 
     'login/end' (state) {
-      return {...state, loginLoading: true};
+      return {...state, loginLoading: false};
     },
 
     'login/error' (state, action) {
