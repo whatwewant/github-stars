@@ -1,4 +1,4 @@
-// filename: request.js
+// filename: request.js.utils
 import fetch from 'dva/fetch';
 
 function parseJSON(response) {
