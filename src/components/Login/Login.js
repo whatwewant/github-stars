@@ -5,8 +5,8 @@ class Login extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const username = this.refs.username.value.trim();
-    const password = this.refs.password.value.trim();
+    const username = this.inputUsername.value.trim();
+    const password = this.inputPassword.value.trim();
 
     this.props.dispatch({ type: 'user/login', payload: { username, password } });
   }
@@ -24,11 +24,18 @@ class Login extends React.Component {
             }
             <div className={styles.formItem}>
               <label htmlFor="username">Github Username:</label>
-              <input ref="username" id="username" />
+              <input
+                id="username"
+                ref={(input) => this.inputUsername = input}
+              />
             </div>
             <div className={styles.formItem}>
               <label htmlFor="password">Github Password:</label>
-              <input ref="password" id="password" type="password" />
+              <input
+                id="password"
+                type="password"
+                ref={(input) => this.inputPassword = input}
+              />
             </div>
             <div className={styles.formItem}>
               <label />
