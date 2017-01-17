@@ -68,7 +68,8 @@ const mapStateToProps = state => {
   // Detail
   const star = state.stars.data.filter(item => item.id === state.stars.selectedStarId)[0];
   const repo = star ? `${star.owner.login}/${star.name}` : null;
-  const readme = repo && state.readme[repo] ? marked(decodeURIComponent(atob(state.readme[repo]))) : null;
+  // Fix encode. Ref: http://blog.sqrtthree.com/2015/08/29/utf8-to-b64
+  const readme = repo && state.readme[repo] ? marked(decodeURIComponent(escape(atob(state.readme[repo])))) : null;
 
   // FilteredStars
   const keyword = state.header.keyword;
