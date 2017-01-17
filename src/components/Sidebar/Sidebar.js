@@ -14,11 +14,20 @@ function Sidebar({ starsCount, userInfo }) {
       <div className={styles.menu}>
         <ul>
           <li className={styles.menuActive}>
-            <i className={classnames(fa['fa'], fa['fa-star'])} /> My Stars
-            <b>{starsCount}</b>
+            <i className={classnames(fa['fa'], fa['fa-star'])} />
+            <span>My Stars</span>
+            <b>[{starsCount}]</b>
           </li>
-          <li><i className={classnames(fa['fa'], fa['fa-rss'])} /> Feeds [WIP]</li>
-          <li><i className={classnames(fa['fa'], fa['fa-thumbs-up'])} /> Trends [WIP]</li>
+          <li>
+            <i className={classnames(fa['fa'], fa['fa-rss'])} />
+            <span>Feeds</span>
+            <b>[WIP]</b>
+          </li>
+          <li>
+            <i className={classnames(fa['fa'], fa['fa-thumbs-up'])} />
+            <span>Trends</span>
+            <b>[WIP]</b>
+          </li>
         </ul>
       </div>
     </div>

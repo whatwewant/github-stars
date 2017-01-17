@@ -22,7 +22,7 @@ class App extends PureComponent {
       readme,
       dispatch,
       detail,
-      // filteredStars
+      filteredStars
     } = this.props;
 
     if (!user.login) {
@@ -45,7 +45,7 @@ class App extends PureComponent {
             dispatch={dispatch}
           />
           <Stars
-            filteredStars={stars.data}
+            filteredStars={filteredStars}
             selectedStarId={stars.selectedStarId}
             dispatch={dispatch}
           />
@@ -64,17 +64,23 @@ class App extends PureComponent {
 }
 
 const mapStateToProps = state => {
-  const star = state.stars.data.filter(item => item.id === state.stars.selectedStarId)[0];
 
+  // Detail
+  const star = state.stars.data.filter(item => item.id === state.stars.selectedStarId)[0];
   const repo = star ? `${star.owner.login}/${star.name}` : null;
   const readme = repo && state.readme[repo] ? marked(decodeURIComponent(atob(state.readme[repo]))) : null;
+
+  // FilteredStars
+  const keyword = state.header.keyword;
+  const filteredStars = keyword ? state.stars.data.filter(item => item.name.indexOf(keyword) > -1 || (item.description && item.description.indexOf(keyword) > -1)) : state.stars.data.slice(0, 100);
 
   return {
   ...state,
   detail: {
     readme,
     repo,
-  }
+  },
+  filteredStars,
 };
 };
 

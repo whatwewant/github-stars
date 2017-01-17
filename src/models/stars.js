@@ -136,7 +136,6 @@ export default {
       });
     },
     *select({ payload: { id, repo } }, { put, call, select }) {
-      console.log('Select: ', id);
       yield put({
         type: 'select/save',
         payload: id,
