@@ -12,7 +12,7 @@ class Detail extends PureComponent {
   componentWillMount() {
     const { repo } = this.props;
     if (repo) {
-      this.props.dispatch({ type: 'readme/fetch' });
+      this.props.dispatch({ type: 'readme/fetch', payload: repo });
     }
   }
 
