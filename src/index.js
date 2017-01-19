@@ -10,7 +10,7 @@ const initialState = data ? JSON.parse(data) : {};
 const app = dva({
   initialState,
   onStateChange() {
-    window.localStorage.setItem('github', JSON.stringify(pick(app._store.getState(), ['stars', 'user'])))
+    window.localStorage.setItem('github', JSON.stringify(pick(app._store.getState(), ['stars', 'user', 'readme'])))
   },
 });
 
