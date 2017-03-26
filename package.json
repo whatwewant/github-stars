@@ -4,7 +4,7 @@
     "start": "roadhog server",
     "build": "roadhog build",
     "lint": "eslint --ext .js src test",
-    "precommit": "npm run lint"
+    "precommit#disabled": "npm run lint"
   },
   "dependencies": {
     "babel-runtime": "^6.9.2",
@@ -30,6 +30,8 @@
     "marked": "^0.3.6",
     "normalize.css": "^5.0.0",
     "redbox-react": "^1.3.2",
-    "roadhog": "^0.4.0"
+    "roadhog": "^0.4.0",
+    "xml2js": "^0.4.17",
+    "xml2json": "^0.11.0"
   }
 }

@@ -9,6 +9,7 @@ class Stars extends PureComponent {
 
   componentDidMount() {
     this.props.dispatch({ type: 'stars/sync' });
+    this.props.dispatch({ type: 'feeds/sync' });
   }
 
   renderData() {

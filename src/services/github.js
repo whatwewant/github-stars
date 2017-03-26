@@ -9,6 +9,7 @@
 */
 
 import fetch from 'dva/fetch';
+import { parseString as parseXML } from 'xml2js';
 
 function parseLink(str) {
   const ret = {};
@@ -70,4 +71,15 @@ export async function unstar(repo, username, password) {
 export async function getReadme(repo, username, password) {
   return await fetch(`https://api.github.com/repos/${repo}/readme`, auth({}, username, password))
     .then(res => res.json());
+}
+
+export async function fetchFeeds(username, password) {
+  return await fetch(`https://api.github.com/feeds`, auth({}, username, password))
+      .then(res => res.json());
+}
+
+export async function fetchPrivateFeeds(username, token) {
+  return await fetch(`https://github.com/${username}.private.atom?token=${token}`)
+      .then(res => res.text)
+      .then(xml => parseXML(xml));
 }
